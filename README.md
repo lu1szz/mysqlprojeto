@@ -67,7 +67,7 @@ O banco `rede_social` possui 7 tabelas:
 
 ## 🖼️ Diagrama (DER)
 
-![DER](docs/der.png)
+![DER](docs/3770c0c6-8a0e-4add-8129-12578388301d.JPG)
 
 ## 👥 Equipe
 

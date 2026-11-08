@@ -69,11 +69,6 @@ O banco `rede_social` possui 7 tabelas:
 
 <img width="1317" height="749" alt="Diagrama DER do banco de dados rede_social" src="https://github.com/user-attachments/assets/184bba21-addc-4b78-8511-a4ddc727805c" />
 
-## 👥 Equipe
-
-- Luis Henrique Oliveira – modelagem do banco de dados
-- Nome do colega – função
-- Nome do colega – função
 
 ## 📚 Aprendizados
 

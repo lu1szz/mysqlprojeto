@@ -1,4 +1,4 @@
-Banco de Dados – Rede Social (MySQL)
+# Banco de Dados – Rede Social (MySQL)
 
 Projeto em equipe de modelagem e implementação de um banco de dados relacional em MySQL para uma rede social, onde usuários criam perfis, fazem publicações e interagem por meio de curtidas, comentários e compartilhamentos.
 

@@ -50,7 +50,7 @@ O banco `rede_social` possui 7 tabelas:
 1. Tenha o MySQL (ou MySQL Workbench) instalado.
 2. Clone o repositório:
    ```bash
-   git clone https://github.com/lu1szz/NOME-DO-REPOSITORIO.git
+   git clone https://github.com/lu1szz/querysql.git
    ```
 3. Execute o script no MySQL:
    ```bash

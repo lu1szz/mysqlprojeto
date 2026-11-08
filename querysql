@@ -1,0 +1,123 @@
+CREATE DATABASE IF NOT EXISTS rede_social;
+
+USE rede_social;
+
+DROP TABLE IF EXISTS curtida;
+DROP TABLE IF EXISTS comentarios;
+DROP TABLE IF EXISTS compartilhamento;
+DROP TABLE IF EXISTS publicacao;
+DROP TABLE IF EXISTS pesquisa;
+DROP TABLE IF EXISTS perfil;
+DROP TABLE IF EXISTS usuario;
+
+CREATE TABLE usuario (
+    id_usuario INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    senha VARCHAR(255) NOT NULL,
+    data_nascimento DATE NULL
+);
+
+CREATE TABLE perfil (
+    id_perfil INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT NOT NULL UNIQUE,
+    data_criacao TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    nome_usuario VARCHAR(255) NULL,
+    biografia VARCHAR(255) NULL,
+    pronome VARCHAR(255) NULL,
+	FOREIGN KEY (id_usuario)
+	REFERENCES usuario(id_usuario)
+);
+
+CREATE TABLE pesquisa (
+    id_pesquisa INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT NOT NULL,
+    conteudo VARCHAR(255) NULL,
+    data_pesquisa TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_usuario)
+	REFERENCES usuario(id_usuario)
+);
+
+CREATE TABLE publicacao (
+    id_publicacao INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT NOT NULL,
+    data_postagem TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    descricao VARCHAR(255) NULL,
+    conteudo VARCHAR(255) NULL,
+	FOREIGN KEY (id_usuario)
+	REFERENCES usuario(id_usuario)
+);
+
+CREATE TABLE compartilhamento (
+    id_compartilhamento INT AUTO_INCREMENT PRIMARY KEY,
+    id_publicacao INT NOT NULL,
+    id_usuario INT NOT NULL,
+    data_compartilhamento TIMESTAMP NOT NULL
+	DEFAULT CURRENT_TIMESTAMP,
+    local_compartilhamento VARCHAR(255) NOT NULL,
+	FOREIGN KEY (id_publicacao)
+	REFERENCES publicacao(id_publicacao),
+    FOREIGN KEY (id_usuario)
+	REFERENCES usuario(id_usuario)
+);
+
+CREATE TABLE comentarios (
+    id_comentario INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT NOT NULL,
+    id_publicacao INT NOT NULL,
+    data_comentario TIMESTAMP NOT NULL
+	DEFAULT CURRENT_TIMESTAMP,
+    conteudo VARCHAR(255) NOT NULL,
+    FOREIGN KEY (id_usuario)
+	REFERENCES usuario(id_usuario),
+	FOREIGN KEY (id_publicacao)
+	REFERENCES publicacao(id_publicacao)
+);
+
+CREATE TABLE curtida (
+    id_curtida INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT NOT NULL,
+    id_publicacao INT NOT NULL,
+    data_curtida TIMESTAMP NOT NULL
+	DEFAULT CURRENT_TIMESTAMP,
+	FOREIGN KEY (id_usuario)
+	REFERENCES usuario(id_usuario),
+    FOREIGN KEY (id_publicacao)
+	REFERENCES publicacao(id_publicacao),
+    UNIQUE (id_usuario, id_publicacao)
+);
+
+/*usuario*/
+  insert into usuario(nome, email, senha, data_nascimento)
+  values ('Luis Oliveira','example@gmail.com','12345','2002-10-20');
+
+  /*perfil*/
+  insert into perfil (id_usuario, data_criacao, nome_usuario, biografia, pronome)
+  values (1, CURRENT_TIMESTAMP, 'Luis', 'Me chamo Luis Oliveira', 'ele/dele');
+  
+  /*pesquisa*/
+  insert into pesquisa (id_usuario, conteudo, data_pesquisa)
+  values (1, 'Pesquisa sobre banco de dados', CURRENT_TIMESTAMP);
+  
+  /* publicacao*/
+  insert into publicacao (id_usuario, data_postagem, descricao, conteudo)
+  values ('1', CURRENT_TIMESTAMP,'fruta','alimento');
+  
+  /* compartilhamento*/
+  insert into compartilhamento (id_publicacao, id_usuario, data_compartilhamento, local_compartilhamento)
+  values ('1','1', CURRENT_TIMESTAMP,'Brasil');
+  
+  /* comentarios*/
+  insert into comentarios (id_comentario, id_usuario,  id_publicacao, data_comentario, conteudo)
+  values (1, 1, 1, CURRENT_TIMESTAMP, 'Minha primeira publicação');
+  
+  /* curtida*/
+   insert into curtida (id_curtida, id_usuario, id_publicacao, data_curtida)
+   values  (1, 1, 1, CURRENT_TIMESTAMP);
+   
+   show tables;
+   
+   desc perfil;
+   
+   select * from curtida;
+   
